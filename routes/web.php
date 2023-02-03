@@ -13,11 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 require_once 'payment.php';
+require_once 'admin.php';
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+Route::get('/home', function (){
+    return view('home');
+})->name('home');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
