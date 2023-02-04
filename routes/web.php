@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 require_once 'payment.php';
 require_once 'admin.php';
+require_once 'product.php';
+require_once 'ui.php';
 
 Route::get('/', function () {
     return view('home');

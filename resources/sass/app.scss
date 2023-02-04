@@ -6,3 +6,62 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+@import 'home';
+@import 'product';
+
+
+.product-section{
+    margin : 10px 20px;
+    overflow-wrap: break-word;
+    max-height: 280px;
+}
+
+.a-btn{
+    background-color:rgba(0,0,0,0.1);
+    color:black;
+    border-radius:5px;
+    padding : 2px;
+    cursor: pointer;
+    text-decoration: none;
+    width:auto;
+    &:hover{
+        background-color:rgba(0,0,0,0.2);
+        span{
+            color:black;
+        }
+    }
+}
+
+.interact-btn{
+    margin : 5px;
+    padding : 5px;
+    height :auto;
+    width : auto;
+    border-radius:6px;
+    text-decoration: none;
+    color : white;
+    font-size : 10px;
+    font-weight : bold;
+    cursor: pointer;
+    &:hover{
+        color : white;
+    }
+}
+
+.modal-close-btn{
+    width: 30px;
+    height:30px;
+    background-color:#F0F2F5 ;
+    border-radius: 50%;
+    cursor:pointer;
+    &:hover{
+        background-color:#BCC0C4;
+
+    }
+}
+.icon-align{
+    padding-top:14px;
+}
+
+
+
