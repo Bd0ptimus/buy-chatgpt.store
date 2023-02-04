@@ -13,6 +13,7 @@ class Account extends Model
         'account',
         'password',
         'product_id',
+        'sold',
     ];
 
     public function product(){

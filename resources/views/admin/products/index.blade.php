@@ -13,6 +13,13 @@
                 <div class="row d-flex justify-content-center" style="margin : 30px auto ;padding:0px;">
                     <div class="row" style="width:100%; margin: 30px auto;">
                         <h4 style="text-align:center; font-weight:700;">Các sản phẩm</h4>
+                        <div class="row" style="width : 200px;">
+                            <a class=" redirect-btn"
+                                href="{{ route('admin.product.productForm', ['categoryId' => $categoryId]) }}">
+                                {{-- href="{{route('admin.account.createAccount',['accountType'=>$role_user])}}" --}}
+                                <i class="fa-solid fa-user-plus"></i><span> Thêm sản phẩm mới</span>
+                            </a>
+                        </div>
                         <div class="table-responsive" style="margin-top:20px;">
                             <table id="productTable" class="table table-bordered table-striped text-nowrap"
                                 style="overflow:scroll;">
@@ -49,89 +56,20 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="row justify-content-center my-4">
-                            <div class="col-md-8">
-                                <div class="card my-2">
-                                    <div class="card-header">Thêm sản phẩm mới</div>
-
-                                    <div class="card-body">
-                                        <form method="POST"
-                                            action="{{ route('admin.product.addProduct', ['categoryId' => $categoryId]) }}">
-                                            @csrf
-
-                                            <div class="row mb-3">
-                                                <label for="name" class="col-md-4 col-form-label text-md-end">Tên sản
-                                                    phẩm mới<span class="text-danger">(*)</span></label>
-
-                                                <div class="col-md-6">
-                                                    <input id="name" type="text"
-                                                        class="form-control @error('name') is-invalid @enderror"
-                                                        name="name" value="{{ old('name') }}" required
-                                                        autocomplete="name" autofocus>
-
-                                                    @error('name')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-
-
-                                            </div>
-
-                                            <div class="row mb-3">
-                                                <label for="price" class="col-md-4 col-form-label text-md-end">Giá bán
-                                                    (&#8363;)<span class="text-danger">(*)</span></label>
-                                                <div class="col-md-6">
-                                                    <input id="price" type="number"
-                                                        class="form-control @error('price') is-invalid @enderror"
-                                                        name="price" value="{{ old('price') }}" required
-                                                        autocomplete="name" autofocus>
-
-                                                    @error('price')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-
-                                            <div class="row mb-3">
-                                                <label for="poster" class="col-md-4 col-form-label text-md-end">URL ảnh
-                                                    Poster</label>
-                                                <div class="col-md-6">
-                                                    <input id="poster" type="text"
-                                                        class="form-control @error('poster') is-invalid @enderror"
-                                                        name="poster" value="{{ old('poster') }}" autocomplete="name"
-                                                        autofocus>
-
-                                                    @error('poster')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
-
-                                            <div class="row mb-0">
-                                                <div class="col-md-6 offset-md-4">
-                                                    <button type="submit" class="btn btn-primary">
-                                                        Thêm sản phẩm
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
+                        @if(count($products)>0)
+                        <div class="row" style="width : 200px; margin-top: 50px;">
+                            <a class=" redirect-btn"
+                                href="{{ route('admin.account.accountForm', ['categoryId' => $categoryId]) }}">
+                                {{-- href="{{route('admin.account.createAccount',['accountType'=>$role_user])}}" --}}
+                                <i class="fa-solid fa-user-plus"></i><span> Thêm tài khoản</span>
+                            </a>
                         </div>
-                    </div>
-
-                    @foreach ($products as $product)
+                        @endif
+                        @foreach ($products as $product)
                         <div class="row" style="width:100%; margin: 30px auto;">
                             <h4 style="text-align:center; font-weight:700;">Các tài khoản của {{ $product->name }}</h4>
                             <div class="table-responsive" style="margin-top:20px;">
-                                <table id="productTable" class="table table-bordered table-striped text-nowrap"
+                                <table class="accountTable table table-bordered table-striped text-nowrap"
                                     style="overflow:scroll;">
                                     <thead>
                                         <tr>
@@ -142,42 +80,55 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($products as $key => $product)
-                                            <tr>
-                                                <th scope="col">{{ $key + 1 }}</th>
-                                                <th scope="col">{{ $product->name }}</th>
-                                                <th scope="col">{{ number_format($product->price) }}</th>
-                                                <td>
-                                                    <a class="interact-btn" style="background-color:blue;"
-                                                        onclick="updateProduct({{ $product->id }}, '{{ $product->name }}', {{ $product->price }}, '{{ $product->url_poster }}')">
-                                                        Chỉnh sửa</a>
-                                                    <a class="interact-btn" style="background-color:red;"
-                                                        href="{{ route('admin.product.deleteProduct', ['productId' => $product->id]) }}">
-                                                        Xóa</a>
-                                                    {{-- @if ($admin->email != '')
-                                                        <a class="action-account-btn interact-btn"
-                                                            style="background-color:#1d8daf;"
-                                                            href="{{ route('admin.sendAccountDetail', ['userId' => $admin->id, 'pageId' => ADMIN_PAGE]) }}">Gửi
-                                                            thông tin tài khoản</a>
-                                                    @endif --}}
-                                                </td>
-                                            </tr>
+                                        @foreach ($accounts as $key => $account)
+                                            @if ($account->product_id == $product->id)
+                                                <tr>
+                                                    <th scope="col">{{ $key + 1 }}</th>
+                                                    <th scope="col">{{ $account->account }}</th>
+                                                    <th scope="col">{{ $account->password }}</th>
+                                                    <td>
+                                                        <a class="interact-btn" style="background-color:blue;"
+                                                            onclick="updateAccount({{ $account->id }}, '{{ $account->account }}', '{{ $account->password }}', {{$product->id}}, '{{$product->name}}')">
+                                                            Chỉnh sửa</a>
+                                                        <a class="interact-btn" style="background-color:red;"
+                                                            href="{{ route('admin.account.deleteAccount', ['accountId' => $account->id]) }}">
+                                                            Xóa</a>
+                                                        {{-- @if ($admin->email != '')
+                                                            <a class="action-account-btn interact-btn"
+                                                                style="background-color:#1d8daf;"
+                                                                href="{{ route('admin.sendAccountDetail', ['userId' => $admin->id, 'pageId' => ADMIN_PAGE]) }}">Gửi
+                                                                thông tin tài khoản</a>
+                                                        @endif --}}
+                                                    </td>
+                                                </tr>
+                                            @endif
                                         @endforeach
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     @endforeach
+
+                    </div>
+
+
+
+
                 </div>
+
             </div>
         </div>
     </div>
+    </div>
     @include('admin.products.updateProduct')
+    @include('admin.products.updateAccount')
+
 @endsection
 @section('script')
     <script type="text/javascript">
         $(document).ready(function() {
             $('#productTable').DataTable();
+            $('.accountTable').DataTable();
         });
 
         function updateProduct(productId, productName, productPrice, productPoster) {
@@ -211,6 +162,40 @@
             $('#updateProduct-modal-close').on('click', function() {
                 $('#updateProduct-modal').modal('hide');
             })
+
+            $('#updateAccount-modal-close').on('click', function() {
+                $('#updateAccount-modal').modal('hide');
+            })
         });
+
+        function changeAccountResetFormStyle() {
+            var setupBorderColor = "rgba(0, 0, 0, 0.175)";
+            $('#accountUsername').css('border-color', setupBorderColor);
+            $('#accountPassword').css('border-color', setupBorderColor);
+
+        }
+
+        function changeAccountResetForms() {
+            $('#accountUsername').val("");
+            $('#accountPassword').val("");
+            $('#accountUsername').removeClass("is-invalid");
+            $('#accountPassword').removeClass("is-invalid");
+            $('span.invalid-feedback').remove();
+
+        }
+
+        function updateAccount(accountId, accountUsername, accountPassword, productId, productName){
+            console.log(accountPassword);
+            let updateFormAction = `{{ route('admin.account.updateAccount', '') }}`+"/"  + accountId;
+            changeAccountResetFormStyle();
+            changeAccountResetForms();
+            $('#updateAccountForm').attr('action', updateFormAction);
+            $('#accountUsername').val(accountUsername);
+            $('#accountPassword').val(accountPassword);
+            $('#accountProduct').val(productName);
+            $('#accountConfirm').val(productId);
+
+            $('#updateAccount-modal').modal('show');
+        }
     </script>
 @endsection

@@ -22,4 +22,24 @@ class AccountService
             $query->where('category_id', $categoryId);
         })->get();
     }
+
+    public function addNewAccount($params){
+        Account::create([
+            'account' => $params['username'],
+            'password' => $params['password'],
+            'product_id' => $params['productId'],
+            'sold'=>ACCOUNT_NOT_SOLD,
+        ]);
+    }
+
+    public function updateAccount($params, $accountId){
+        Account::find($accountId)->update([
+            'account' => $params['username'],
+            'password' => $params['password'],
+        ]);
+    }
+
+    public function deleteAccount($accountId){
+        Account::find($accountId)->delete();
+    }
 }

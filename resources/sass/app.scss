@@ -63,5 +63,27 @@
     padding-top:14px;
 }
 
+.redirect-btn{
+    padding : 10px;
+    height :auto;
+    width : auto;
+    border-radius:6px;
+    background-color:blue;
+    text-decoration: none;
+    color : white;
+    font-size : 15px;
+    font-weight : bold;
+    cursor: pointer;
+
+    &:hover{
+        border : 2px solid blue;
+        border-radius:6px;
+        background-color : white;
+        color: blue;
+        transition: .5s;
+    }
+}
+
+
 
 

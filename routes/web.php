@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,11 +19,9 @@ require_once 'product.php';
 require_once 'ui.php';
 
 Route::get('/', function () {
-    return view('home');
+    return redirect()->route('home');
 });
-Route::get('/home', function (){
-    return view('home');
-})->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
