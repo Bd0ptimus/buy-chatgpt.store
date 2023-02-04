@@ -17,16 +17,23 @@ class UiController extends Controller
     public function index(Request $request){
         try{
             $categories = $this->categoryService->takeAllCategory();
-            $response['navbar']='';
-            foreach($categories as $category){
-                $response['navbar']=$response['navbar'].'<li class="nav-item">
-                                                                <a class="nav-link" href="'.route('product.index',['categoryId'=>$category->id]).'">Tài khoản '.$category->name.'</a>
-                                                            </li>';
-            }
-
             $response['isAdmin'] = false;
             if(Admin::user()!==null){
                 $response['isAdmin']= true;
+            }
+            $response['navbar']='';
+            if($response['isAdmin']){
+                foreach($categories as $category){
+                    $response['navbar']=$response['navbar'].'<li class="nav-item">
+                                                                    <a class="nav-link" href="'.route('admin.product.index',['categoryId'=>$category->id]).'">Tài khoản '.$category->name.'</a>
+                                                                </li>';
+                }
+            }else{
+                foreach($categories as $category){
+                    $response['navbar']=$response['navbar'].'<li class="nav-item">
+                                                                    <a class="nav-link" href="'.route('product.index',['categoryId'=>$category->id]).'">Tài khoản '.$category->name.'</a>
+                                                                </li>';
+                }
             }
         }catch(\Exception $e){
             LOG::debug('error in addCategory : ' . $e );

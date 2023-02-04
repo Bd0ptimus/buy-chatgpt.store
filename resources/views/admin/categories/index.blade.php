@@ -99,7 +99,7 @@
 
 @endsection
 @section('script')
-    <script>
+    <script type="text/javascript">
         $(document).ready(function() {
             $('#categoryTable').DataTable();
         });

@@ -1,29 +1,49 @@
 @php
     use App\Admin;
 @endphp
-<div class="modal fade clearfix px-5" id="updateCategory-modal" tabindex="-1" role="dialog"
+<div class="modal fade clearfix px-5" id="updateProduct-modal" tabindex="-1" role="dialog"
     aria-labelledby="" aria-hidden="true" style="padding:0px;">
     <div class="modal-dialog modal-dialog-centered " role="document"
         style="max-width: 1000px; width: 100%; margin : auto;">
         <div class="modal-content">
 
             <div class="modal-header d-flex justify-content-center" style="position:relative;">
-                <h4 style="font-size:20px; font-weight:bold; text-align:center;  padding:0px 50px;">Chỉnh sửa nhóm sản phẩm</h4>
-                <span id="updateCategory-modal-close" style=" position:absolute; right:10px; top:5px;" class="modal-close-btn d-flex justify-content-center">
+                <h4 style="font-size:20px; font-weight:bold; text-align:center;  padding:0px 50px;">Chỉnh sửa sản phẩm</h4>
+                <span id="updateProduct-modal-close" style=" position:absolute; right:10px; top:5px;" class="modal-close-btn d-flex justify-content-center">
                     <i class="fa-solid fa-xmark fa-xl icon-align" ></i></span>
 
             </div>
 
 
             <div class="modal-body">
-                <form id="updateCategoryForm" method="POST" action=""> @csrf
+                <form id="updateProductForm" method="POST" action=""> @csrf
                     <div class="row my-1">
                         <div class="col-xs-4 h-100 m-0" style="display:block; justify-content: center;">
-                            <h6 class="mt-2">Tên nhóm sản phẩm</h6>
+                            <h6 class="mt-2">Tên sản phẩm</h6>
                         </div>
                         <div class="col-xs-7 h-100 m-0">
-                            <input maxlength="100" style="border-colorsetupBorderColor" id="categoryName"
-                                name='categoryName' type="text" class="form-control h-100" value="" required/>
+                            <input maxlength="100" style="border-colorsetupBorderColor" id="productName"
+                                name='productName' type="text" class="form-control h-100" value="" required/>
+                        </div>
+                    </div>
+
+                    <div class="row my-1">
+                        <div class="col-xs-4 h-100 m-0" style="display:block; justify-content: center;">
+                            <h6 class="mt-2">Giá sản phẩm (&#8363;)</h6>
+                        </div>
+                        <div class="col-xs-7 h-100 m-0">
+                            <input maxlength="100" style="border-colorsetupBorderColor" id="productPrice"
+                                name='productPrice' type="number" class="form-control h-100" value="" required/>
+                        </div>
+                    </div>
+
+                    <div class="row my-1">
+                        <div class="col-xs-4 h-100 m-0" style="display:block; justify-content: center;">
+                            <h6 class="mt-2">Giá sản phẩm (&#8363;)</h6>
+                        </div>
+                        <div class="col-xs-7 h-100 m-0">
+                            <input maxlength="100" style="border-colorsetupBorderColor" id="productPoster"
+                                name='productPoster' type="text" class="form-control h-100" value="" />
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
@@ -97,21 +117,9 @@
     </style>
     @endsection
 </div>
-@section('script')
+{{-- @section('script')
 <script type="text/javascript">
 
-    function changeCategoryResetFormStyle() {
-        var setupBorderColor = "rgba(0, 0, 0, 0.175)";
-        $('#categoryName').css('border-color', setupBorderColor);
-    }
 
-    function changeCategoryResetForms() {
-        $('#categoryName').val("");
-    }
-    $(document).ready(function() {
-        $('#updateCategory-modal-close').on('click', function() {
-            $('#updateCategory-modal').modal('hide');
-        })
-    });
 </script>
-@endsection
+@endsection --}}

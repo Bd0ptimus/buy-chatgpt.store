@@ -16,10 +16,11 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 
     <!-- Scripts -->
-    <script src="https://kit.fontawesome.com/04e9a3dbb4.js" crossorigin="anonymous"></script>
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <script type="text/javascript" src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
     <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer></script>
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <script src="https://kit.fontawesome.com/04e9a3dbb4.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
