@@ -6,17 +6,17 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-    public function create(Request $request)
+    public function create(Request $request, $amountPayment, $checkoutId)
     {
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Returnurl = "http://local.buy-chatgpt.store/payment/return";
+        $vnp_Returnurl = "http://local.buy-chatgpt.store/home";
         $vnp_TmnCode = "H67YF8QO"; //Mã website tại VNPAY
         $vnp_HashSecret = "LYAGWZAIRASCVBCCLPHVZWELZFJDZBIQ"; //Chuỗi bí mật
 
-        $vnp_TxnRef = '12345'; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
+        $vnp_TxnRef = $checkoutId; //Mã đơn hàng. Trong thực tế Merchant cần insert đơn hàng vào DB và gửi mã này sang VNPAY
         $vnp_OrderInfo = 'Thanh toan don hang';
         $vnp_OrderType = 'billpayment';
-        $vnp_Amount = 20000* 100;
+        $vnp_Amount = $amountPayment* 100;
         $vnp_Locale = 'vn';
         $vnp_BankCode = '';
         $vnp_IpAddr = $_SERVER['REMOTE_ADDR'];

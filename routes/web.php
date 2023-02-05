@@ -22,7 +22,9 @@ Route::get('/', function () {
     return redirect()->route('home');
 });
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
+Route::get('/test', function () {
+    return view('test');
+});
 Auth::routes();
 
 

@@ -21,7 +21,7 @@
                     </p>
                 </div>
                 <div class="product-action-sec d-flex justify-content-center">
-                    <a class="my-2 d-flex justify-content-center a-btn">
+                    <a class="my-2 d-flex justify-content-center a-btn" href="{{route('payment.create',['paymentAmount'=>$product->price,'checkoutId'=>'123'])}}">
                         <span style="font-weight : 600;">Mua</span>
                     </a>
                 </div>
