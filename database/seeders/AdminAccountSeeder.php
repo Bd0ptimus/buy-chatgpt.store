@@ -31,6 +31,24 @@ class AdminAccountSeeder extends Seeder
                 'password' => 'Buidung1292',
             ],
 
+            [
+                'name' => 'Duy Lân Admin',
+                'email' => 'landepzaj3042@gmail.com',
+                'password' => 'Lanadmin123',
+            ],
+
+            [
+                'name' => 'Giang Admin',
+                'email' => 'sylvietf03@gmail.com',
+                'password' => 'Giangadmin123',
+            ],
+
+            [
+                'name' => 'Quân Admin',
+                'email' => '221001602@daihocthudo.edu.vn',
+                'password' => 'Quanadmin123',
+            ],
+
         ];
 
 
