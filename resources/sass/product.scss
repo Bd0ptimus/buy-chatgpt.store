@@ -5,6 +5,11 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+@mixin textOverflowYEllipsis{
+    overflow-y: hidden;
+    text-overflow: ellipsis;
+    white-space: wrap;
+}
 
 .product-slot{
     padding: 0px;
@@ -45,6 +50,7 @@
         color:black;
         text-align: center;
         @include remove-margin-p;
+        @include textOverflowYEllipsis;
     }
 
     .product-price{
@@ -75,9 +81,8 @@
         overflow-wrap: break-word;
         padding: 7px;
         @include remove-margin-p;
-        overflow-y: hidden;
-        text-overflow: ellipsis;
-        white-space: wrap;
+        @include textOverflowYEllipsis;
+
 
     }
 
