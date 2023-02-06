@@ -16,6 +16,7 @@ class Product extends Model
         'category_id',
         'url_poster',
         'price',
+        'description',
     ];
 
     public function category(){

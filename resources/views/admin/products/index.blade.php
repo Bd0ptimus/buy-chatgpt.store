@@ -28,18 +28,22 @@
                                         <th scope="col">STT</th>
                                         <th scope="col">Tên sản phẩm</th>
                                         <th scope="col">Giá bán (&#8363;)</th>
+                                        <th scope="col">Mô tả</th>
+
                                         <th scope="col">Thao tác</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($products as $key => $product)
                                         <tr>
-                                            <th scope="col">{{ $key + 1 }}</th>
-                                            <th scope="col">{{ $product->name }}</th>
-                                            <th scope="col">{{ number_format($product->price) }}</th>
+                                            <td scope="col">{{ $key + 1 }}</td>
+                                            <td scope="col">{{ $product->name }}</td>
+                                            <td scope="col">{{ number_format($product->price) }}</td>
+                                            <td scope="col">{{ $product->description}}</td>
+
                                             <td>
                                                 <a class="interact-btn" style="background-color:blue;"
-                                                    onclick="updateProduct({{ $product->id }}, '{{ $product->name }}', {{ $product->price }}, '{{ $product->url_poster }}')">
+                                                    onclick="updateProduct({{ $product->id }}, '{{ $product->name }}', {{ $product->price }}, '{{ $product->url_poster }}', '{{ $product->description }}')">
                                                     Chỉnh sửa</a>
                                                 <a class="interact-btn" style="background-color:red;"
                                                     href="{{ route('admin.product.deleteProduct', ['productId' => $product->id]) }}">
@@ -83,9 +87,9 @@
                                         @foreach ($accounts as $key => $account)
                                             @if ($account->product_id == $product->id)
                                                 <tr>
-                                                    <th scope="col">{{ $key + 1 }}</th>
-                                                    <th scope="col">{{ $account->account }}</th>
-                                                    <th scope="col">{{ $account->password }}</th>
+                                                    <td scope="col">{{ $key + 1 }}</td>
+                                                    <td scope="col">{{ $account->account }}</td>
+                                                    <td scope="col">{{ $account->password }}</td>
                                                     <td>
                                                         <a class="interact-btn" style="background-color:blue;"
                                                             onclick="updateAccount({{ $account->id }}, '{{ $account->account }}', '{{ $account->password }}', {{$product->id}}, '{{$product->name}}')">
@@ -131,7 +135,7 @@
             $('.accountTable').DataTable();
         });
 
-        function updateProduct(productId, productName, productPrice, productPoster) {
+        function updateProduct(productId, productName, productPrice, productPoster, productDes) {
             let updateFormAction = `{{ route('admin.product.updateProduct', '') }}` + "/" + productId;
             changeProductResetFormStyle();
             changeProductResetForms();
@@ -139,6 +143,7 @@
             $('#productName').val(productName);
             $('#productPrice').val(productPrice);
             $('#productPoster').val(productPoster);
+            $('#productDes').val(productDes);
 
             $('#updateProduct-modal').modal('show');
 

@@ -139,6 +139,8 @@ class AdminController extends Controller
             $params['name'] = $request->name;
             $params['price'] = $request->price;
             $params['poster'] = $request->poster;
+            $params['des'] = $request->description;
+
             $this->productService->createProduct($params, $categoryId);
             return redirect()->route('admin.product.index', [
                 'categoryId' => $categoryId,
@@ -151,6 +153,7 @@ class AdminController extends Controller
         $params['name'] = $request->productName;
         $params['price'] = $request->productPrice;
         $params['poster'] = $request->productPoster;
+        $params['des'] = $request->productDes;
 
         $this->productService->updateProduct($params, $productId);
         return redirect()->back();

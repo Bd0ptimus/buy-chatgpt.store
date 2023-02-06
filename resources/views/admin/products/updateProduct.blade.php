@@ -46,6 +46,15 @@
                                 name='productPoster' type="text" class="form-control h-100" value="" />
                         </div>
                     </div>
+                    <div class="row my-1">
+                        <div class="col-xs-4 h-100 m-0" style="display:block; justify-content: center;">
+                            <h6 class="mt-2">Mô tả</h6>
+                        </div>
+                        <div class="col-xs-7 h-100 m-0">
+                            <input maxlength="100" style="border-colorsetupBorderColor" id="productDes"
+                                name='productDes' type="text" class="form-control h-100" value="" />
+                        </div>
+                    </div>
                     <div class="modal-footer d-flex justify-content-center">
                         <button id="categoryConfirm" type="submit" class="btn modal-btn btn-primary">Xác nhận</button>
                     </div>

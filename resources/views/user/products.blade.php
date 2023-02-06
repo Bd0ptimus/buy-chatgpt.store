@@ -1,36 +1,52 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="row product-section d-flex justify-content-center">
-            @foreach($products as $product)
-                <div class="product-slot">
-                    <div class="product-img-sec d-flex justify-content-center">
-                        <img class="product-img" src="{{$product->url_poster}}"/>
-                    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="row product-section ">
+                @foreach ($products as $product)
+                    <div class="product-slot">
 
-                    <div class="product-text-sec">
-                        <p class ="product-name">
-                            {{$product->name}}
-                        </p>
-                    </div>
-                    <div class="product-text-sec">
-                        <p class ="product-price">
-                            &#8363; {{number_format($product->price)}}
-                        </p>
-                    </div>
-                    <div class="product-action-sec d-flex justify-content-center">
-                        <a class="my-2 d-flex justify-content-center a-btn" href="{{route('payment.create',['paymentAmount'=>$product->price,'checkoutId'=>'123'])}}">
-                            <span style="font-weight : 600;">Mua</span>
-                        </a>
-                    </div>
-                </div>
-            @endforeach
+                        <div class="product-text-sec vertical-container d-flex justify-content-center"
+                            style=" height:50px; background-color: rgb(255,245,203,0.5);">
+                            <p class="product-name vertical-element-middle-align">
+                                {{ $product->name }}
+                            </p>
+                        </div>
+
+                        <div class="product-text-sec d-flex justify-content-center">
+                            <p class="product-price">
+                                {{ number_format($product->price) }} VNĐ
+                            </p>
+                        </div>
+
+                        <div class="product-text-sec d-flex justify-content-center">
+                            <p class="product-left">
+                                Còn : <span class="product-left-number">10000</span>
+                            </p>
+                        </div>
 
 
+                        <div class="product-text-sec d-flex justify-content-center">
+                            <p class="product-des">
+                                adwawdawdawdawdawdawdawdawdawdawdawawdawdan awdawdawda awdawdawd awdawda dawdawdawd awdawdaw
+                                dawd awdaw dad a wdawdawdawdawd awd awd awd awd ad ad wa da adawdadw awd
+                            </p>
+                        </div>
 
+
+                        <div class="product-action-sec d-flex justify-content-center">
+                            <a class="my-2 d-flex justify-content-center buy-btn"
+                                href="{{ route('payment.create', ['paymentAmount' => $product->price, 'checkoutId' => '123']) }}">
+                                <span style="font-weight : 600;"><i class="fa-solid fa-cart-plus"></i>&emsp;Mua ngay</span>
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+
+
+
+            </div>
         </div>
     </div>
-</div>
 @endsection

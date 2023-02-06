@@ -49,6 +49,8 @@ class AdminAccountSeeder extends Seeder
                 'password' => 'Quanadmin123',
             ],
 
+
+
         ];
 
 

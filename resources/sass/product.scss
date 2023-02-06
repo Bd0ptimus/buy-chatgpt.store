@@ -1,9 +1,16 @@
 @import 'setting';
 
+@mixin textOverflowEllipsis{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
 .product-slot{
+    padding: 0px;
+    border-radius: 10px;
     margin : 10px;
-    width : 150px;
+    width : 200px;
     height : 100%;
     background-color: white;
     --img-margin:1px;
@@ -26,28 +33,63 @@
     }
 
     .product-text-sec{
-        margin:var(--img-margin);
-        width:calc(100% - 2*var(--img-margin));
-        padding : 0px 2px;
+        margin:0xp;
+        width:100%;
+        padding : 0px;
+
     }
 
     .product-name{
-        font-weight:700px;
+        font-weight:700;
         font-size  :15px;
+        color:black;
+        text-align: center;
         @include remove-margin-p;
     }
 
     .product-price{
-        font-weight:500px;
-        font-size  :10px;
+        font-weight:700;
+        font-size  :15px;
         color:red;
         @include remove-margin-p;
-
+        margin-top:15px;
     }
 
     .product-action-sec{
-        margin:var(--img-margin);
-        width:calc(100% - 2*var(--img-margin));
+        margin:0px;
+        width:auto;
+    }
+
+    .product-left-number{
+        background-color:rgb(255,245,203);
+        border-radius:20px;
+        color:black;
+        font-size:12px;
+        font-weight: 700;
+        padding:5px;
+    }
+
+    .product-des{
+        width:100%;
+        height : 100px;
+        overflow-wrap: break-word;
+        padding: 7px;
+        @include remove-margin-p;
+        overflow-y: hidden;
+        text-overflow: ellipsis;
+        white-space: wrap;
+
     }
 
 }
+
+
+.product-title{
+    @include textOverflowEllipsis;
+    width:100%;
+    font-size:15px;
+    font-weight: 600;
+}
+
+
+

@@ -27,6 +27,7 @@ class ProductService
             'price' => $params['price'],
             'category_id' => $categoryId,
             'url_poster'=>$params['poster']??PRODUCT_URL_POSTER_SAMPLE,
+            'description' => $params['des'],
         ]);
     }
 
@@ -35,6 +36,8 @@ class ProductService
             'name' => $params['name'],
             'price' => $params['price'],
             'url_poster' => $params['poster'] ?? PRODUCT_URL_POSTER_SAMPLE,
+            'description' => $params['des'],
+
         ]);
     }
 
