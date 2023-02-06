@@ -56,7 +56,7 @@
 
                         <div class="product-text-sec d-flex justify-content-center">
                             <p class="product-des">
-                                adwawdawdawdawdawdawdawdawdawdawdawawdawdan awdawdawda awdawdawd awdawda dawdawdawd awdawdaw dawd awdaw dad a wdawdawdawdawd awd awd awd awd ad ad wa da adawdadw awd
+                                {{$product->description }}
                             </p>
                         </div>
 
