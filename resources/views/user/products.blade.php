@@ -18,11 +18,6 @@
             @endforeach
             </div>
             <div class="row product-section ">
-                <h1 class="category-splitder">
-                    <span>
-                        New
-                    </span>
-                </h1>
                 @foreach ($products as $product)
                     <div class="product-slot">
 
