@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
+
 class HomeController extends Controller
 {
     /**
@@ -24,8 +26,11 @@ class HomeController extends Controller
     public function index()
     {
         $products = Product::get();
+        $categories = Category::with('products')->get();
         return view('home',[
+            'categories' => $categories,
             'products' => $products,
+            'categoryId' => 0,
         ]);
     }
 }

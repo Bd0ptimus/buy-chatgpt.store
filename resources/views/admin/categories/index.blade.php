@@ -21,6 +21,9 @@
                                         <th scope="col">STT</th>
                                         <th scope="col">ID nhóm sản phẩm</th>
                                         <th scope="col">Tên nhóm sản phẩm</th>
+                                        <th scope="col">Màu nhận diện</th>
+                                        <th scope="col">Ảnh nhận diện</th>
+
                                         <th scope="col">Thao tác</th>
                                     </tr>
                                 </thead>
@@ -30,10 +33,22 @@
                                             <th scope="col">{{ $key + 1 }}</th>
                                             <th scope="col">{{ $category->id }}</th>
                                             <th scope="col">{{ $category->name }}</th>
+                                            <th scope="col">
+                                                <input id="colorTable" type="color"
+                                                        class="form-control @error('color') is-invalid @enderror"
+                                                        name="colorTable" value="{{$category->main_color }}"
+                                                        autocomplete="name" autofocus disabled>
+                                            </th>
+                                            <th scope="col">
+                                                @if(asset($category->image))
+                                                <img src="{{$category->image}}" style = "max-height : 80px; max-width: 600px;"/>
+                                                @endif
+                                            </th>
+
                                             <td>
                                                 <a class="interact-btn"
                                                     style="background-color:blue;"
-                                                    onclick="updateCategory({{$category->id}}, '{{$category->name}}')">
+                                                    onclick="updateCategory({{$category->id}}, '{{$category->name}}', '{{$category->main_color}}', '{{$category->image}}')">
                                                     Chỉnh sửa</a>
                                                 <a class="interact-btn"
                                                     style="background-color:red;"
@@ -62,7 +77,7 @@
 
                                             <div class="row mb-3">
                                                 <label for="name" class="col-md-4 col-form-label text-md-end">Tên nhóm
-                                                    sản phẩm mới</label>
+                                                    sản phẩm mới<span class="text-danger">(*)</span></label>
 
                                                 <div class="col-md-6">
                                                     <input id="name" type="text"
@@ -71,6 +86,40 @@
                                                         autocomplete="name" autofocus>
 
                                                     @error('name')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="color" class="col-md-4 col-form-label text-md-end">Màu nhận diện</label>
+
+                                                <div class="col-md-6">
+                                                    <input id="color" type="color"
+                                                        class="form-control @error('color') is-invalid @enderror"
+                                                        name="color" value="{{ old('color') }}"
+                                                        autocomplete="name" autofocus>
+
+                                                    @error('color')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="image" class="col-md-4 col-form-label text-md-end">URL ảnh nhận diện</label>
+
+                                                <div class="col-md-6">
+                                                    <input id="image" type="text"
+                                                        class="form-control @error('image') is-invalid @enderror"
+                                                        name="image" value="{{ old('image') }}"
+                                                        autocomplete="name" autofocus>
+
+                                                    @error('image')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>
@@ -104,14 +153,32 @@
             $('#categoryTable').DataTable();
         });
 
-        function updateCategory(categoryId, categoryName) {
+        function updateCategory(categoryId, categoryName, categoryColor, categoryImage) {
             let updateFormAction =  `{{route("admin.category.updateCategory",'')}}`+"/"+categoryId;
             changeCategoryResetFormStyle();
             changeCategoryResetForms();
             $('#updateCategoryForm').attr('action', updateFormAction);
             $('#categoryName').val(categoryName);
+            $('#categoryColor').val(categoryColor);
+            $('#categoryImage').val(categoryImage);
+
             $('#updateCategory-modal').modal('show');
 
         }
+
+
+            function changeCategoryResetFormStyle() {
+                var setupBorderColor = "rgba(0, 0, 0, 0.175)";
+                $('#categoryName').css('border-color', setupBorderColor);
+            }
+
+            function changeCategoryResetForms() {
+                $('#categoryName').val("");
+            }
+            $(document).ready(function() {
+                $('#updateCategory-modal-close').on('click', function() {
+                    $('#updateCategory-modal').modal('hide');
+                })
+            });
     </script>
 @endsection

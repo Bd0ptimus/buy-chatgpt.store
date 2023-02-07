@@ -68,14 +68,14 @@ class AdminController extends Controller
             if (isset($category)) {
                 return redirect()->back()->withErrors($validator->errors()->add('name', 'Nhóm sản phẩm này đã tồn tại'))->withInput($request->all());
             }
-            $this->categoryService->addCategory($request->name);
+            $this->categoryService->addCategory($request->name, $request->color, $request->image);
             return redirect()->route('admin.category.index');
         }
     }
 
     public function updateCategory(Request $request, $categoryId)
     {
-        $this->categoryService->updateCategory($request->categoryName, $categoryId);
+        $this->categoryService->updateCategory($request->categoryName,$request->categoryColor,$request->categoryImage, $categoryId);
         return redirect()->route('admin.category.index');
     }
 
@@ -140,6 +140,8 @@ class AdminController extends Controller
             $params['price'] = $request->price;
             $params['poster'] = $request->poster;
             $params['des'] = $request->description;
+            $params['star'] = $request->star;
+            $params['status'] = $request->status;
 
             $this->productService->createProduct($params, $categoryId);
             return redirect()->route('admin.product.index', [
@@ -154,6 +156,8 @@ class AdminController extends Controller
         $params['price'] = $request->productPrice;
         $params['poster'] = $request->productPoster;
         $params['des'] = $request->productDes;
+        $params['star'] = $request->productStar;
+        $params['status'] = $request->productStatus;
 
         $this->productService->updateProduct($params, $productId);
         return redirect()->back();

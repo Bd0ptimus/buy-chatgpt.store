@@ -29,6 +29,8 @@
                                         <th scope="col">Tên sản phẩm</th>
                                         <th scope="col">Giá bán (&#8363;)</th>
                                         <th scope="col">Mô tả</th>
+                                        <th scope="col">Đánh giá</th>
+                                        <th scope="col">Trạng thái</th>
 
                                         <th scope="col">Thao tác</th>
                                     </tr>
@@ -40,10 +42,20 @@
                                             <td scope="col">{{ $product->name }}</td>
                                             <td scope="col">{{ number_format($product->price) }}</td>
                                             <td scope="col">{{ $product->description}}</td>
+                                            <td scope="col">{{ $product->star}}<span>/5<i class="fa-solid fa-star" style="color:orange;"></i></span></td>
+                                            <td scope="col">
+                                                @if($product->status == PRODUCT_HOT_STATUS)
+                                                    HOT
+                                                @elseif($product->status == PRODUCT_NEW_STATUS)
+                                                    NEW
+                                                @elseif($product->status == PRODUCT_SALE_STATUS)
+                                                    SALE
+                                                @endif
+                                            </td>
 
                                             <td>
                                                 <a class="interact-btn" style="background-color:blue;"
-                                                    onclick="updateProduct({{ $product->id }}, '{{ $product->name }}', {{ $product->price }}, '{{ $product->url_poster }}', '{{ $product->description }}')">
+                                                    onclick="updateProduct({{ $product->id }}, '{{ $product->name }}', {{ $product->price }}, '{{ $product->url_poster }}', '{{ $product->description }}', {{$product->star}}, {{$product->status}})">
                                                     Chỉnh sửa</a>
                                                 <a class="interact-btn" style="background-color:red;"
                                                     href="{{ route('admin.product.deleteProduct', ['productId' => $product->id]) }}">
@@ -133,9 +145,14 @@
         $(document).ready(function() {
             $('#productTable').DataTable();
             $('.accountTable').DataTable();
+
+            $('#productStar').on('change', function () {
+                $('#starPreview').text($('#productStar').val());
+            });
+
         });
 
-        function updateProduct(productId, productName, productPrice, productPoster, productDes) {
+        function updateProduct(productId, productName, productPrice, productPoster, productDes, productStar, productStatus) {
             let updateFormAction = `{{ route('admin.product.updateProduct', '') }}` + "/" + productId;
             changeProductResetFormStyle();
             changeProductResetForms();
@@ -144,6 +161,9 @@
             $('#productPrice').val(productPrice);
             $('#productPoster').val(productPoster);
             $('#productDes').val(productDes);
+            $('#productStar').val(productStar);
+            $('#starPreview').text(productStar);
+            $('#productStatus').val(productStatus);
 
             $('#updateProduct-modal').modal('show');
 

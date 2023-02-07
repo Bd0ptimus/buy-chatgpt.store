@@ -55,6 +55,33 @@
                                 name='productDes' type="text" class="form-control h-100" value="" />
                         </div>
                     </div>
+
+                    <div class="row my-1">
+                        <div class="col-xs-4 h-100 m-0" style="display:block; justify-content: center;">
+                            <h6 class="mt-2">Đánh giá</h6>
+                        </div>
+                        <div class="col-xs-7 h-100 m-0">
+                            <input maxlength="100" style="border-colorsetupBorderColor" id="productStar"
+                                name='productStar' type="range" class="h-100" value="" min="0" max="5" step="1"/>
+                                <span id="starPreview"></span><span>/5<i class="fa-solid fa-star" style="color:orange;"></i></span>
+                        </div>
+                    </div>
+
+                    <div class="row my-1">
+                        <div class="col-xs-4 h-100 m-0" style="display:block; justify-content: center;">
+                            <h6 class="mt-2">Tình trạng</h6>
+                        </div>
+                        <div class="col-xs-7 h-100 m-0">
+                            <select style="border-colorsetupBorderColor" id="productStatus"
+                                name='productStatus' class="form-control h-100">
+                                <option value="{{PRODUCT_NONE_STATUS}}" label="Chọn trạng thái..." selected="selected"> Chọn trạng thái...</option>
+                                <option value="{{PRODUCT_HOT_STATUS}}" > HOT</option>
+                                <option value="{{PRODUCT_NEW_STATUS}}" > NEW</option>
+                                <option value="{{PRODUCT_SALE_STATUS}}" > SALE</option>
+
+                            </select>
+                        </div>
+                    </div>
                     <div class="modal-footer d-flex justify-content-center">
                         <button id="categoryConfirm" type="submit" class="btn modal-btn btn-primary">Xác nhận</button>
                     </div>

@@ -86,6 +86,44 @@
                                                 </div>
                                             </div>
 
+                                            <div class="row mb-3">
+                                                <label for="star" class="col-md-4 col-form-label text-md-end">Đánh giá</label>
+                                                <div class="col-md-6">
+                                                    <input id="star" type="range"
+                                                        class=" @error('description') is-invalid @enderror"
+                                                        name="star" value="{{ old('star') }}" autocomplete="star" min="0" max="5" step="1"
+                                                        autofocus>
+                                                    <span id="starPreview"></span><span>/5<i class="fa-solid fa-star" style="color:orange;"></i></span>
+                                                    @error('star')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <label for="status" class="col-md-4 col-form-label text-md-end">Trạng thái</label>
+                                                <div class="col-md-6">
+                                                    <select id="status"
+                                                        class=" form-control @error('status') is-invalid @enderror"
+                                                        name="status" >
+                                                        <option value="{{PRODUCT_NONE_STATUS}}" label="Chọn trạng thái..." selected="selected"> Chọn trạng thái...</option>
+                                                        <option value="{{PRODUCT_HOT_STATUS}}" > HOT</option>
+                                                        <option value="{{PRODUCT_NEW_STATUS}}" > NEW</option>
+                                                        <option value="{{PRODUCT_SALE_STATUS}}" > SALE</option>
+
+
+                                                    </select>
+                                                    @error('status')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
+
                                             <div class="row mb-0">
                                                 <div class="col-md-6 offset-md-4">
                                                     <button type="submit" class="btn btn-primary">
@@ -108,3 +146,17 @@
     </div>
 @endsection
 
+@section('script')
+<script type="text/javascript">
+$(document).ready(function () {
+    $('#star').val('0');
+    $('#starPreview').text($('#star').val());
+
+    $('#star').on('change', function () {
+        $('#starPreview').text($('#star').val());
+    });
+
+});
+
+</script>
+@endsection

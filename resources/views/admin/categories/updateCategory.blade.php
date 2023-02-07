@@ -26,6 +26,32 @@
                                 name='categoryName' type="text" class="form-control h-100" value="" required/>
                         </div>
                     </div>
+                    <div class="row my-1">
+                        <div class="col-xs-4 h-100 m-0" style="display:block; justify-content: center;">
+                            <h6 class="mt-2">Màu nhận diện</h6>
+                        </div>
+                        <div class="col-md-6">
+                            <input id="categoryColor" type="color"
+                                class="form-control @error('color') is-invalid @enderror"
+                                name="categoryColor" value="{{ old('color') }}"
+                                autocomplete="name" autofocus>
+
+                            @error('categoryColor')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row my-1">
+                        <div class="col-xs-4 h-100 m-0" style="display:block; justify-content: center;">
+                            <h6 class="mt-2">Ảnh nhận diện</h6>
+                        </div>
+                        <div class="col-xs-7 h-100 m-0">
+                            <input maxlength="100" style="border-colorsetupBorderColor" id="categoryImage"
+                                name='categoryImage' type="text" class="form-control h-100" value=""/>
+                        </div>
+                    </div>
                     <div class="modal-footer d-flex justify-content-center">
                         <button id="categoryConfirm" type="submit" class="btn modal-btn btn-primary">Xác nhận</button>
                     </div>
@@ -97,21 +123,3 @@
     </style>
     @endsection
 </div>
-@section('script')
-<script type="text/javascript">
-
-    function changeCategoryResetFormStyle() {
-        var setupBorderColor = "rgba(0, 0, 0, 0.175)";
-        $('#categoryName').css('border-color', setupBorderColor);
-    }
-
-    function changeCategoryResetForms() {
-        $('#categoryName').val("");
-    }
-    $(document).ready(function() {
-        $('#updateCategory-modal-close').on('click', function() {
-            $('#updateCategory-modal').modal('hide');
-        })
-    });
-</script>
-@endsection

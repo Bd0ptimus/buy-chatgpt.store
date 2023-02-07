@@ -20,15 +20,19 @@ class CategoryService
         return Category::get();
     }
 
-    public function addCategory($name){
+    public function addCategory($name, $color, $image){
         Category::create([
             'name'=>$name,
+            'main_color' => $color=='#000000'|| $color=='#FFFFFF'?CATEGORY_DEFAULT_COLOR:$color,
+            'image' => $image??'',
         ]);
     }
 
-    public function updateCategory($name, $categoryId){
+    public function updateCategory($name, $color, $image, $categoryId){
         Category::find($categoryId)->update([
             'name' => $name,
+            'main_color' => $color=='#000000'|| $color=='#FFFFFF'?CATEGORY_DEFAULT_COLOR:$color,
+            'image' => $image??'',
         ]);
     }
 
