@@ -95,12 +95,12 @@
 
     .product-des{
         width:100%;
-        height : 100px;
+        height : 85px;
         overflow-wrap: break-word;
-        padding: 7px;
         text-align: center;
         @include remove-margin-p;
         @include textOverflowYEllipsis;
+        margin: 7px;
         font-size: 13px;
 
     }

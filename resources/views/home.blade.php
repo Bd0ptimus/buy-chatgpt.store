@@ -3,6 +3,8 @@
 @section('content')
     @php
         use App\Models\Account;
+        use App\Models\Product;
+
     @endphp
     <div class="d-flex justify-content-center" style="height: auto; width:100%;">
         <div class="row justify-content-center" style="width:100%;">
@@ -19,11 +21,13 @@
             </div>
             <div class="row product-section ">
                 @foreach ($categories as $category)
+                    @if(Product::where('category_id', $category->id)->get()->count() > 0)
                     <h1 class="category-splitder">
                         <span>
                             {{ $category->name }}
                         </span>
                     </h1>
+                    @endif
                     @foreach ($category->products as $product)
                         <div class="product-slot">
                             @if($product->status != 0)
