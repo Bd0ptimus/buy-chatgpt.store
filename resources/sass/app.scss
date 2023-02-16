@@ -123,12 +123,20 @@ body {
         transition: .5s;
         background-color:var(--hover-color);
         box-shadow:none;
+        color:red;
         span{
             color:red;
 
         }
     }
 }
+
+.copy-icon{
+    padding-top:6px;
+    cursor: pointer;
+}
+
+
 .product-section{
     display:flex;
 }
@@ -186,19 +194,9 @@ body {
 }
 
 .filter-button{
-    // margin-left : 60px;
-    // padding:8px;
-    // font-size: 15px;
-    // font-weight: 700;
-    // color:var(--product-name);
-    // box-shadow: var(--box-shadow-set );
-
-    // &:hover{
-    //     color:var(--product-name);
-    //     background-color: var(--hover-color);
-    //     transition: .5s;
-    //     box-shadow:none;
-    // }
+    &:hover{
+        color:black;
+    }
 }
 
 .filter-button-activated{

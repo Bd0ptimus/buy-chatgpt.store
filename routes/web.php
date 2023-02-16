@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +19,7 @@ require_once 'payment.php';
 require_once 'admin.php';
 require_once 'product.php';
 require_once 'ui.php';
+require_once 'checkout.php';
 
 Route::get('/', function () {
     return redirect()->route('home');
@@ -27,4 +30,9 @@ Route::get('/test', function () {
 });
 Auth::routes();
 
+
+// Route::post('/chat-message', function (Request $request){
+//     event(new App\Events\WaitingPaymentEvent('1',$request->message));
+//     return null;
+// });
 

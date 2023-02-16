@@ -7,7 +7,13 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/sass/app.scss',
+                'resources/sass/checkout.scss',
+                'resources/sass/payment.scss',
+                'resources/css/app.css',
+
                 'resources/js/app.js',
+                'resources/js/bootstrap.js',
+
             ],
             refresh: true,
         }),

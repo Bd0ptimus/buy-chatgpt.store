@@ -24,15 +24,17 @@ class UiController extends Controller
             $response['navbar']='';
             if($response['isAdmin']){
                 foreach($categories as $category){
-                    $response['navbar']=$response['navbar'].'<li class="nav-item">
-                                                                    <a class="nav-link" href="'.route('admin.product.index',['categoryId'=>$category->id]).'">Tài khoản '.$category->name.'</a>
-                                                                </li>';
+                    $response['navbar']=$response['navbar'].'
+                                                            <a class="dropdown-item" href="'.route('admin.product.index',['categoryId'=>$category->id]).'">
+                                                                '.$category->name.'
+                                                            </a>
+                                                                ';
                 }
             }else{
                 foreach($categories as $category){
-                    $response['navbar']=$response['navbar'].'<li class="nav-item">
-                                                                    <a class="nav-link" href="'.route('product.index',['categoryId'=>$category->id]).'">Tài khoản '.$category->name.'</a>
-                                                                </li>';
+                    $response['navbar']=$response['navbar'].'
+                                                                    <a class="dropdown-item" href="'.route('product.index',['categoryId'=>$category->id]).'">Tài khoản '.$category->name.'</a>
+                                                            ';
                 }
             }
         }catch(\Exception $e){

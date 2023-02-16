@@ -11,10 +11,10 @@
             <div class="row justify-content-center" style="margin : 30px 0px;">
                 @foreach ($categories as $category)
                     <span class="filter-element vertical-container" style="background-color:{{$category->main_color}}" onclick='location.href="{{ route('product.index', ['categoryId' => $category->id]) }}"'>
-                        @if(isset($category->image) || $category->image!="" )
+                        @if(isset($category->image) && filter_var($category->image, FILTER_VALIDATE_URL))
                             <img src = "{{$category->image}}" class="vertical-element-middle-align filter-element-image"/>
                         @endif
-                        <a href="{{ route('product.index', ['categoryId' => $category->id]) }}" style="@if(isset($category->image)||$category->image!='') margin-left : 50px; @endif"
+                        <a href="{{ route('product.index', ['categoryId' => $category->id]) }}" style="@if(isset($category->image)&&filter_var($category->image, FILTER_VALIDATE_URL)) margin-left : 50px; @endif"
                             class="a-btn filter-button  @if ($category->id == $categoryId) filter-button-activated @endif">&ensp;{{ $category->name }}</a>
                     </span>
                 @endforeach
@@ -83,7 +83,7 @@
 
                             <div class="product-action-sec d-flex justify-content-center">
                                 <a class="my-2 d-flex justify-content-center buy-btn"
-                                    href="{{ route('payment.create', ['paymentAmount' => $product->price, 'checkoutId' => '123']) }}">
+                                    href="{{ route('checkout.shoppingCart', ['productId' => $product->id]) }}">
                                     <span style="font-weight : 600;"><i class="fa-solid fa-cart-plus"></i>&emsp;Mua
                                         ngay</span>
                                 </a>

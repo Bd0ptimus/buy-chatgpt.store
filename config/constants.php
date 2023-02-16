@@ -15,3 +15,18 @@ const PRODUCT_NONE_STATUS = 0;
 
 //Category
 const CATEGORY_DEFAULT_COLOR = '#FED166';
+
+//Payment id
+const PAYMENT_TYPE_VIETCOMBANK=1;
+const PAYMENT_TYPE_MOMO=2;
+const PAYMENT_TYPE_MB=3;
+
+const PAYMENT_METHOD_NAME =[
+    '',
+    'Ngân hàng Vietcombank',
+    'Ví điện tử MOMO',
+    'Ngân hàng Quân đội MB',
+];
+
+const PRE_CODE = 'ABC';
+

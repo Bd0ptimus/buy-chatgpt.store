@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/app.scss', 'resources/js/app.js', 'resources/css/app.css'])
     <script type="text/javascript" src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
     <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer></script>
     <script src="https://kit.fontawesome.com/04e9a3dbb4.js" crossorigin="anonymous"></script>
@@ -62,10 +62,33 @@
                                     <a class="nav-link" href="{{ route('register') }}">Đăng ký</a>
                                 </li>
                             @endif --}}
+                            <li class="nav-item dropdown" >
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Các sản phẩm
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" id="user-product-dropdown">
+
+                                </div>
+                            </li>
                         @else
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('admin.category.index') }}">Quản lý nhóm sản phẩm</a>
                             </li>
+
+
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Các sản phẩm
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown"  id="admin-product-dropdown">
+
+                                </div>
+                            </li>
+
 
                             <li class="nav-item dropdown" id="admin-dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
@@ -112,10 +135,10 @@
                 console.log('data response : ', JSON.stringify(data));
                 if (data.error == 0) {
                     if(data.data.isAdmin){
-                        $(data.data.navbar).insertBefore('#admin-dropdown');
+                        $('#admin-product-dropdown').append(data.data.navbar);
 
                     }else{
-                        $('#main-navbar').append(data.data.navbar);
+                        $('#user-product-dropdown').append(data.data.navbar);
                     }
                 }
             }
@@ -127,6 +150,8 @@
     });
 </script>
 @yield('script')
+@yield('script2')
+
 @yield('style')
 
 </html>
