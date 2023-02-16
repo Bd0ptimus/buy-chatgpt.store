@@ -93,8 +93,10 @@ class CheckoutService
             ->where('sum',$params['income'] )->first();
         if(isset($checkout)){
             event(new WaitingPaymentEvent($params['about'],PAYMENT_DONE));
+            return PAYMENT_DONE;
         }else{
             event(new WaitingPaymentEvent($params['about'],PAYMENT_NOT_TRUE));
+            return PAYMENT_NOT_TRUE;
         }
     }
 }
