@@ -213,3 +213,39 @@ body {
     height : 30px;
     max-width : 50px;
 }
+
+
+
+
+/**
+  * four-dots
+  *
+  * @author jh3y
+*/
+:root{
+    --product-name:rgb(3,93,156);
+    --product-lef-color: #3CB72C;
+    --main-color :#FED166; /*#015C9A;*/
+    --hover-color: #fedb9891;
+    --box-shadow-set : inset 0 1px #535050, inset 1px 0 #535050, inset -1px 0 #535050, inset 0 -1px #535050, 0 2px #535050, 0 3px #535050, 0 4px 2px rgb(0 0 0 / 40%);
+}
+.four-dots:before {
+    display: block;
+    height: 5px;
+    width: 5px;
+    content: '';
+    -webkit-animation: spin 1s infinite;
+            animation: spin 1s infinite;
+    border-radius: 100%;
+    -webkit-box-shadow: 10px 0 0 1px var(--product-name), 0 10px 0 1px var(--main-color), 0 -10px 0 1px var(--main-color), -10px 0 0 1px var(--product-name);
+            box-shadow: 10px 0 0 1px var(--product-name), 0 10px 0 1px var(--main-color), 0 -10px 0 1px var(--main-color), -10px 0 0 1px var(--product-name); }
+
+  @-webkit-keyframes spin {
+    to {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg); } }
+
+  @keyframes spin {
+    to {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg); } }
