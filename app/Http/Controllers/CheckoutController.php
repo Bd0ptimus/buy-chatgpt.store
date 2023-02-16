@@ -49,10 +49,12 @@ class CheckoutController extends Controller
 
     public function checkPayment(Request $request){
         try{
-            Test::create([
-                'ip_connected'=> $request->ip(),
-                'data' => $request->data,
-            ]);
+            // Test::create([
+            //     'ip_connected'=> $request->ip(),
+            //     'data' => $request->data,
+            // ]);
+
+
         }catch(\Exception $e){
             LOG::debug('error in addCategory : ' . $e );
             return response()->json(['error' => 1, 'msg' => 'Đã có lỗi']);

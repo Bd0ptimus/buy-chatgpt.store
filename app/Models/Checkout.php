@@ -18,6 +18,7 @@ class Checkout extends Model
         'checkout_code',
         'amount_products',
         'product_id',
+        'sum',
     ];
 
     public function paymentMethod(){

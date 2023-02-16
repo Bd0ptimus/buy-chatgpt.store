@@ -30,3 +30,7 @@ const PAYMENT_METHOD_NAME =[
 
 const PRE_CODE = 'ABC';
 
+
+//waiting payment response code
+const PAYMENT_DONE= 1;
+const PAYMENT_NOT_TRUE= 2;
