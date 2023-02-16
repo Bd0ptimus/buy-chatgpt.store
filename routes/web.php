@@ -30,6 +30,10 @@ Route::get('/test', function () {
 });
 Auth::routes();
 
+Route::any('/csrf-token',function (){
+    return response()->json(['csrf_token' =>csrf_token()]);
+});
+
 
 // Route::post('/chat-message', function (Request $request){
 //     event(new App\Events\WaitingPaymentEvent('1',$request->message));
