@@ -27,6 +27,11 @@
                 </div>
 
                 <div class="payment-info">
+                    <p class="payment-info-title">Số tiền cần thanh toán:</p>
+                    <span class="d-flex justify-content-start"><p class="payment-info-text" id="paymentMoney">{{$paymentMoney}}</p>VND&emsp;<i class="fa-solid fa-copy fa-xl copy-icon" onclick="copyText('paymentMoney')"></i></span>
+                </div>
+
+                <div class="payment-info">
                     <p class="payment-info-title">Thời gian chờ thanh toán:</p>
                     <div class="payment-info-text" id="timer">15:00</div>
                 </div>

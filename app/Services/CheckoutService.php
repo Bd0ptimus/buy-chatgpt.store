@@ -95,7 +95,10 @@ class CheckoutService
             event(new WaitingPaymentEvent($params['about'],PAYMENT_DONE));
             return PAYMENT_DONE;
         }else{
-            event(new WaitingPaymentEvent($params['about'],PAYMENT_NOT_TRUE));
+            $checkoutNotDone = Checkout::where('checkout_code', strtoupper($params['about']))->first();
+            if(isset($checkoutNotDone)){
+                event(new WaitingPaymentEvent($params['about'],PAYMENT_NOT_TRUE));
+            }
             return PAYMENT_NOT_TRUE;
         }
     }
