@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\HomeController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,11 +16,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 require_once 'payment.php';
+require_once 'admin.php';
+require_once 'product.php';
+require_once 'ui.php';
+require_once 'checkout.php';
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('home');
 });
-
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/test', function () {
+    return view('test');
+});
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::any('/csrf-token',function (){
+    return response()->json(['csrf_token' =>csrf_token()]);
+});
+
+
+// Route::post('/chat-message', function (Request $request){
+//     event(new App\Events\WaitingPaymentEvent('1',$request->message));
+//     return null;
+// });
+

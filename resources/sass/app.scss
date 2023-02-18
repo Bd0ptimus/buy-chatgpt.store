@@ -6,3 +6,246 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+@import 'home';
+@import 'product';
+
+body {
+    font-family: 'Basier Square',sans-serif;
+}
+
+.product-section{
+    margin : 10px 20px;
+    overflow-wrap: break-word;
+    max-height: 280px;
+}
+
+.a-btn{
+    color:black;
+    border-radius:5px;
+    padding : 2px;
+    cursor: pointer;
+    text-decoration: none;
+    width:auto;
+    &:hover{
+        span{
+            color:black;
+        }
+    }
+}
+
+.interact-btn{
+    margin : 5px;
+    padding : 5px;
+    height :auto;
+    width : auto;
+    border-radius:6px;
+    text-decoration: none;
+    color : white;
+    font-size : 10px;
+    font-weight : bold;
+    cursor: pointer;
+    &:hover{
+        color : white;
+    }
+}
+
+.modal-close-btn{
+    width: 30px;
+    height:30px;
+    background-color:#F0F2F5 ;
+    border-radius: 50%;
+    cursor:pointer;
+    &:hover{
+        background-color:#BCC0C4;
+
+    }
+}
+.icon-align{
+    padding-top:14px;
+}
+
+.redirect-btn{
+    padding : 10px;
+    height :auto;
+    width : auto;
+    border-radius:6px;
+    background-color:blue;
+    text-decoration: none;
+    color : white;
+    font-size : 15px;
+    font-weight : bold;
+    cursor: pointer;
+
+    &:hover{
+        border : 2px solid blue;
+        border-radius:6px;
+        background-color : white;
+        color: blue;
+        transition: .5s;
+    }
+}
+
+/*vertical align*/
+.vertical-container{
+    position: relative;
+}
+
+.vertical-element-middle-align{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.p-btn{
+    color:black;
+    border: 2px solid black;
+    border-radius:5px;
+    padding : 2px;
+    cursor: pointer;
+    width:auto;
+    margin:0px;
+}
+
+.buy-btn{
+    background-color:var(--main-color);
+    box-shadow: var(--box-shadow-set );
+    color:white;
+    border-radius:8px;
+    padding : 5px;
+    cursor: pointer;
+    text-decoration: none;
+    width:auto;
+    color:red;
+    span{
+        font-size: 12px;
+    }
+    &:hover{
+        transition: .5s;
+        background-color:var(--hover-color);
+        box-shadow:none;
+        color:red;
+        span{
+            color:red;
+
+        }
+    }
+}
+
+.copy-icon{
+    padding-top:6px;
+    cursor: pointer;
+}
+
+
+.product-section{
+    display:flex;
+}
+
+@media screen and (min-width : 1020px) and (max-width: 10000px){
+    .product-section{
+        justify-content: center;
+    }
+
+
+}
+
+
+@media screen and (min-width : 820px) and (max-width: 1020px){
+    .product-section{
+        justify-content: center;
+    }
+
+}
+
+
+@media screen and (min-width : 450px) and (max-width: 820px){
+
+    .product-section{
+        justify-content: center;
+    }
+}
+
+
+@media screen and (max-width: 450px){
+
+    .product-section{
+        justify-content: center;
+    }
+}
+
+.filter-element{
+    border-radius: 10px;
+    margin : 3px 5px;
+    cursor: pointer;
+    width:auto;
+    padding:8px;
+    font-size: 15px;
+    font-weight: 700;
+    color:var(--product-name);
+    // background-color: var(--main-color);
+    box-shadow: var(--box-shadow-set );
+
+    &:hover{
+        color:var(--product-name);
+        background-color: var(--hover-color);
+        transition: .5s;
+        box-shadow:none;
+    }
+}
+
+.filter-button{
+    &:hover{
+        color:black;
+    }
+}
+
+.filter-button-activated{
+    box-shadow:none;
+
+}
+
+.rating-star-checked{
+    color:orange;
+}
+
+
+.filter-element-image{
+    height : 30px;
+    max-width : 50px;
+}
+
+
+
+
+/**
+  * four-dots
+  *
+  * @author jh3y
+*/
+:root{
+    --product-name:rgb(3,93,156);
+    --product-lef-color: #3CB72C;
+    --main-color :#FED166; /*#015C9A;*/
+    --hover-color: #fedb9891;
+    --box-shadow-set : inset 0 1px #535050, inset 1px 0 #535050, inset -1px 0 #535050, inset 0 -1px #535050, 0 2px #535050, 0 3px #535050, 0 4px 2px rgb(0 0 0 / 40%);
+}
+.four-dots:before {
+    display: block;
+    height: 5px;
+    width: 5px;
+    content: '';
+    -webkit-animation: spin 1s infinite;
+            animation: spin 1s infinite;
+    border-radius: 100%;
+    -webkit-box-shadow: 10px 0 0 1px var(--product-name), 0 10px 0 1px var(--main-color), 0 -10px 0 1px var(--main-color), -10px 0 0 1px var(--product-name);
+            box-shadow: 10px 0 0 1px var(--product-name), 0 10px 0 1px var(--main-color), 0 -10px 0 1px var(--main-color), -10px 0 0 1px var(--product-name); }
+
+  @-webkit-keyframes spin {
+    to {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg); } }
+
+  @keyframes spin {
+    to {
+      -webkit-transform: rotate(360deg);
+              transform: rotate(360deg); } }

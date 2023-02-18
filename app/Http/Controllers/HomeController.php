@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Product;
+use App\Models\Category;
+use App\Services\CheckoutService;
 class HomeController extends Controller
 {
     /**
@@ -11,9 +13,12 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+
+    protected $checkoutService;
+    public function __construct(CheckoutService $checkoutService)
     {
-        $this->middleware('auth');
+        $this->checkoutService = $checkoutService;
+        // $this->middleware('auth');
     }
 
     /**
@@ -23,6 +28,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $this->checkoutService->clearCheckoutOutdate();
+        $products = Product::get();
+        $categories = Category::with('products')->get();
+        return view('home',[
+            'categories' => $categories,
+            'products' => $products,
+            'categoryId' => 0,
+        ]);
     }
 }
