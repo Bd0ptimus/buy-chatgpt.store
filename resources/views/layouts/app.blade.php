@@ -74,6 +74,9 @@
                             </li>
                         @else
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('home') }}">Trang chủ</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('admin.category.index') }}">Quản lý nhóm sản phẩm</a>
                             </li>
 
