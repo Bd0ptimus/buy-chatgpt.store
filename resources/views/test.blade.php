@@ -9,6 +9,8 @@
             <div class="d-block justify-content-center" style="padding: 0px 50px;">
                 <form method="post" action="{{route('checkout.paymentAccept')}}"> @csrf
                     <input type="text" name="code"/>
+                    <input type="text" name="money"/>
+
                     <button type="submit">Submit</button>
                 </form>
 

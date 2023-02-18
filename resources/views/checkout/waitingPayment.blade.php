@@ -106,7 +106,7 @@
                 /* Stop the countdown when the time reaches 0 */
                 if (time < 0) {
                     clearInterval(countdown);
-                    history.back();
+                    window.location.href = `{{route('checkout.checkoutTimeOut','')}}` +"/"+{{$checkoutId}};
                 }
             }, 1000);
 
@@ -115,7 +115,7 @@
 
 
         const channelName = 'public.payment.' + '{{$checkoutCode}}';
-        const redirectRoute = `{{route('home')}}`;
+        const redirectRoute = `{{route('checkout.checkoutComplete','')}}` +"/"+{{$checkoutId}};
         const waitingPayment = true;
     </script>
 @endsection

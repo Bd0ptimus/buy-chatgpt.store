@@ -12,4 +12,7 @@ Route::group(['prefix' => 'checkout', 'as'=>'checkout.'], function($route){
     $route->any('/waiting-payment/{productId}',[ CheckoutController::class, 'waitingPayment'])->name('waitingPayment');
     $route->any('/payment-accept',[CheckoutController::class, 'paymentAccept'])->name('paymentAccept');
     $route->any('check-payment', [CheckoutController::class, 'checkPayment'])->name('checkPayment');
+    $route->get('checkout-complete/{checkoutId}', [CheckoutController::class, 'checkoutComplete'])->name('checkoutComplete');
+    $route->get('checkout-timeout/{checkoutId}', [CheckoutController::class, 'checkoutTimeOut'])->name('checkoutTimeOut');
+
 });

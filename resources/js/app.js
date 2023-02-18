@@ -5,7 +5,7 @@
  */
 
 import './bootstrap';
-import { createApp } from 'vue';
+import { compile, createApp } from 'vue';
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -47,6 +47,7 @@ try {
         }).listen('.payment-complete', (event) => {
             console.log(event);
             window.location.href = redirectRoute;
+
         });
 
     }

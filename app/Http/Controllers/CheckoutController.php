@@ -40,12 +40,15 @@ class CheckoutController extends Controller
             'paymentMethod' => $paymentMethod,
             'checkoutCode' => $info->checkout_code,
             'paymentMoney' => number_format($info->sum),
+            'checkoutId' => $info->id,
         ]);
     }
 
     public function paymentAccept(Request $request){
-        event(new WaitingPaymentEvent($request->code,'done'));
-        return null;
+        $params['about'] = $request->code;
+        $params['income'] = $request->money;
+        $this->checkoutService->checkPayment($params);
+        return redirect()->back();
     }
 
     public function checkPayment(Request $request){
@@ -54,7 +57,6 @@ class CheckoutController extends Controller
             //     'ip_connected'=> $request->ip(),
             //     'data' => $request->data,
             // ]);
-
             $params['about'] = $request->about;
             $params['income'] = $request -> income;
             $response = $this->checkoutService->checkPayment($params);
@@ -70,9 +72,25 @@ class CheckoutController extends Controller
         }
         return response()->json(['error' => 0, 'msg' => 'kiểm tra thành công', 'data'=> $data]);
 
+    }
 
+    public function checkoutComplete(Request $request, $checkoutId){
+        $checkout = Checkout::find($checkoutId);
+        if($checkout->status == CHECKOUT_DONE){
+            return view('checkout.checkoutDone',[
+                'checkout' => $checkout,
+            ]);
+        }else{
+            $this->checkoutService->clearCheckout($checkoutId);
+            return view('checkout.checkoutNotDone',[
+                'checkout' => $checkout,
+            ]);
+        }
+    }
 
-
+    public function checkoutTimeOut(Request $request, $checkoutId){
+        $this->checkoutService->clearCheckout($checkoutId);
+        return redirect()->route('home');
     }
 
 }

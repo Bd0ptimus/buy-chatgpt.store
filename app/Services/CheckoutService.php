@@ -47,6 +47,12 @@ class CheckoutService
         }
     }
 
+    public function clearCheckout($checkoutId){
+        $this->moveAccountToNotSoldInCheckout($checkoutId);
+        $checkout=Checkout::find($checkoutId);
+        $checkout->delete();
+    }
+
     public function AddNewCheckout($request, $productId)
     {
         DB::beginTransaction();
@@ -65,6 +71,7 @@ class CheckoutService
                 'amount_products' => $request->numberProduct,
                 'sum' =>  $request->numberProduct * Product::find($productId)->price,
                 'receiver_name' => $request->name,
+                'status'=> CHECKOUT_PENDING,
             ]);
 
             $checkout->update([
@@ -92,14 +99,23 @@ class CheckoutService
         $checkout=Checkout::where('checkout_code', strtoupper($params['about']))
             ->where('sum',$params['income'] )->first();
         if(isset($checkout)){
+            $checkout->update([
+                'status'=>CHECKOUT_DONE,
+            ]);
             event(new WaitingPaymentEvent($params['about'],PAYMENT_DONE));
             return PAYMENT_DONE;
         }else{
             $checkoutNotDone = Checkout::where('checkout_code', strtoupper($params['about']))->first();
             if(isset($checkoutNotDone)){
-                event(new WaitingPaymentEvent($params['about'],PAYMENT_NOT_TRUE));
+                if($checkoutNotDone->sum < $params['income']){
+                    event(new WaitingPaymentEvent($params['about'],PAYMENT_DONE));
+                    return PAYMENT_DONE;
+                }else{
+                    event(new WaitingPaymentEvent($params['about'],PAYMENT_NOT_TRUE));
+                    return PAYMENT_NOT_TRUE;
+
+                }
             }
-            return PAYMENT_NOT_TRUE;
         }
     }
 }

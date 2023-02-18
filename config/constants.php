@@ -26,9 +26,15 @@ const PAYMENT_METHOD_NAME =[
     'Ngân hàng Quân đội MB',
 ];
 
-const PRE_CODE = 'ABC';
+const PRE_CODE = 'PAY_ITECH_';
 
 
 //waiting payment response code
 const PAYMENT_DONE= 1;
 const PAYMENT_NOT_TRUE= 2;
+
+
+//Checkout Status
+const CHECKOUT_PENDING=0;
+const CHECKOUT_DONE=1;
+const CHECKOUT_TIME_OUT=2;

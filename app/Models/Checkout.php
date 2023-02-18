@@ -19,13 +19,14 @@ class Checkout extends Model
         'amount_products',
         'product_id',
         'sum',
+        'status',
     ];
 
     public function paymentMethod(){
         return $this->belongsTo(PaymentMethod::class,'payment_method_id', 'id');
     }
 
-    public function account(){
+    public function accounts(){
         return $this->hasMany(Account::class, 'checkout_complete_id', 'id');
     }
 }
