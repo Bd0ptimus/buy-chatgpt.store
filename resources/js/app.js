@@ -47,28 +47,22 @@ try {
         }).listen('.payment-complete', (event) => {
             console.log(event);
             window.location.href = redirectRoute;
-            // const message = event.message;
-            // const li = document.createElement('li');
-            // li.textContent = message;
-            // listMesages.append(li);
         });
 
-
-        // const form = document.getElementById('form');
-        // const inputMessage = document.getElementById('input-message');
-        // const listMesages = document.getElementById('list-message');
-        // form.addEventListener('submit', function (event) {
-        //     event.preventDefault();
-        //     const userInput = inputMessage.value;
-        //     console.log('message input : ', userInput);
-        //     axios.post('/chat-message', {
-        //         message: userInput,
-        //     });
-
-        // })
     }
 
-} catch (Exceptions) { }
+} catch (Exceptions) {
+    console.log('Error in connect to channel');
+ }
+
+
+
+
+
+
+
+
+
 
 
 
