@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Hash;
 
 use App\Models\PaymentMethod;
+use App\Models\Checkout;
+use App\Models\Account;
+
 class PaymentMethodSeeder extends Seeder
 {
     /**
@@ -30,7 +33,23 @@ class PaymentMethodSeeder extends Seeder
 
         DB::beginTransaction();
         try{
-            PaymentMethod::truncate();
+            $checkouts=Checkout::with('accounts')->get();
+            foreach($checkouts as $checkout){
+                foreach($checkout->accounts as $account){
+                    $account->update([
+                        'sold' => ACCOUNT_NOT_SOLD,
+                        'checkout_complete_id' => null,
+                    ]);
+                }
+
+            }
+
+            Checkout::truncate();
+            $paymentMethods = PaymentMethod::get();
+            foreach($paymentMethods as $paymentMethod){
+                $paymentMethod->delete();
+            }
+            // PaymentMethod::truncate();
             foreach($methods  as $method){
                 PaymentMethod::create([
                     "bank_account_number" => $method['bank_account_number'],
