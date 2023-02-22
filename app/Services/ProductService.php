@@ -26,7 +26,7 @@ class ProductService
             'name' => $params['name'],
             'price' => $params['price'],
             'category_id' => $categoryId,
-            'url_poster'=>$params['poster']??PRODUCT_URL_POSTER_SAMPLE,
+            'url_poster'=>$params['poster']??'',
             'description' => $params['des'],
             'star' => $params['star'],
             'status' => $params['status'],
@@ -38,7 +38,7 @@ class ProductService
         Product::find($productId)->update([
             'name' => $params['name'],
             'price' => $params['price'],
-            'url_poster' => $params['poster'] ?? PRODUCT_URL_POSTER_SAMPLE,
+            'url_poster' => $params['poster'] ?? '',
             'description' => $params['des'],
             'star' => $params['star'],
             'status' => $params['status'],
