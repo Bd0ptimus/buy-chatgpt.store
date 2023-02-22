@@ -58,7 +58,7 @@ class CheckoutController extends Controller
             //     'data' => $request->data,
             // ]);
             $params['about'] = $request->about;
-            $params['income'] = $request -> income;
+            $params['income'] = $request->income;
             $response = $this->checkoutService->checkPayment($params);
             // if($response == PAYMENT_DONE){
             //     $data = PAYMENT_DONE;

@@ -102,16 +102,16 @@ class CheckoutService
             $checkout->update([
                 'status'=>CHECKOUT_DONE,
             ]);
-            event(new WaitingPaymentEvent($params['about'],PAYMENT_DONE));
+            event(new WaitingPaymentEvent(strtoupper($params['about']),PAYMENT_DONE));
             return PAYMENT_DONE;
         }else{
             $checkoutNotDone = Checkout::where('checkout_code', strtoupper($params['about']))->first();
             if(isset($checkoutNotDone)){
                 if($checkoutNotDone->sum < $params['income']){
-                    event(new WaitingPaymentEvent($params['about'],PAYMENT_DONE));
+                    event(new WaitingPaymentEvent(strtoupper($params['about']),PAYMENT_DONE));
                     return PAYMENT_DONE;
                 }else{
-                    event(new WaitingPaymentEvent($params['about'],PAYMENT_NOT_TRUE));
+                    event(new WaitingPaymentEvent(strtoupper($params['about']),PAYMENT_NOT_TRUE));
                     return PAYMENT_NOT_TRUE;
 
                 }
