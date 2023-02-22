@@ -53,19 +53,9 @@ class CheckoutController extends Controller
 
     public function checkPayment(Request $request){
         try{
-            // Test::create([
-            //     'ip_connected'=> $request->ip(),
-            //     'data' => $request->data,
-            // ]);
             $params['about'] = $request->about;
             $params['income'] = $request->income;
             $response = $this->checkoutService->checkPayment($params);
-            // if($response == PAYMENT_DONE){
-            //     $data = PAYMENT_DONE;
-            // }else{
-            //     $data = PAYMENT_NOT_TRUE;
-
-            // }
         }catch(\Exception $e){
             LOG::debug('error in addCategory : ' . $e );
             return response()->json(['error' => 1, 'msg' => 'Đã có lỗi']);

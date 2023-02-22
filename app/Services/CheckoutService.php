@@ -34,7 +34,7 @@ class CheckoutService
     public function clearCheckoutOutdate()
     {
         $currentTimestamp = Carbon::now();
-        $checkouts = Checkout::get();
+        $checkouts = Checkout::where('status','!=', CHECKOUT_DONE)->get();
         foreach ($checkouts as $checkout) {
             // Define the timestamp to compare with
             $compareTimestamp = Carbon::createFromFormat('Y-m-d H:i:s', $checkout->created_at);
@@ -108,6 +108,9 @@ class CheckoutService
             $checkoutNotDone = Checkout::where('checkout_code', strtoupper($params['about']))->first();
             if(isset($checkoutNotDone)){
                 if($checkoutNotDone->sum < $params['income']){
+                    $checkoutNotDone->update([
+                        'status' => CHECKOUT_DONE,
+                    ]);
                     event(new WaitingPaymentEvent(strtoupper($params['about']),PAYMENT_DONE));
                     return PAYMENT_DONE;
                 }else{
