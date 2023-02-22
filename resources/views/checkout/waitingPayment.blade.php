@@ -62,7 +62,7 @@
             </div>
 
             <div class="payment-qr-sec d-flex justify-content-center" style="padding: 0px 50px;">
-                <img src="{{ $paymentMethod->qr_url }}" style="width:100%; height: 300px;">
+                <img src="{{ $paymentMethod->qr_url }}" style="width:100%; height: auto;">
             </div>
 
 
