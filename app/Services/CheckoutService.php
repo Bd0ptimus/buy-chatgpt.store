@@ -116,6 +116,8 @@ class CheckoutService
 
                 }
             }
+            return PAYMENT_UNAVAILABLE;
+
         }
     }
 }
