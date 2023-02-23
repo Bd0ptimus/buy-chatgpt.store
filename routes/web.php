@@ -21,7 +21,9 @@ require_once 'product.php';
 require_once 'ui.php';
 require_once 'checkout.php';
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', function(){
+    dd('abc');
+});
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/test', function () {
     return view('test');
